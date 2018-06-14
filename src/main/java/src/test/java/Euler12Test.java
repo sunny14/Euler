@@ -127,4 +127,7 @@ public class Euler12Test {
         return (stop-start);
     }
 
+
+    //TODO: create test checking int overflow
+
 }

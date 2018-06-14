@@ -55,7 +55,7 @@ public class Euler12 {
         }*/
 
         //TODO: start with 500!
-        int startingPoint = maxDividersNum*(maxDividersNum-1);
+        double startingPoint = Math.pow(2, maxDividersNum-1);
 
         for (int count=2; divisorsNum <= maxDividersNum; count++)  {
 
@@ -69,6 +69,8 @@ public class Euler12 {
             }
 
             if (divisorsNum <= maxDividersNum) {
+                //TODO: move assert to tests
+                assert (Integer.MAX_VALUE - currentTriangleNum >= count);
                 currentTriangleNum += count;
             }
         }
