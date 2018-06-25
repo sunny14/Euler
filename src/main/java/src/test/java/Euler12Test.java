@@ -1,14 +1,11 @@
-import com.faina.test.Euler12;
-import org.hamcrest.CoreMatchers;
+import com.faina.test.euler12.Euler12;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 
-import java.util.*;
+import java.math.BigInteger;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -31,76 +28,39 @@ public class Euler12Test {
     @Rule
     public TestName testName = new TestName();
 
+    /**
+     * tests that 28 is the 1st triangle number having over 5 divisors
+     * uses the brute force calculation
+     */
     @Test
     public void SmallValueTest()    {
 
-        assertEquals(28, Euler12.getFirstTriangleNumWithDividers(5, false));
+        assertEquals(new BigInteger("28"), Euler12.getTriangleNumber(5, false));
     }
 
+    /**
+     * tests that 28 is the 1st triangle number having over 5 divisors
+     * uses the upgraded calculation
+     */
     @Test
     public void SmallValueUpgradedTest()    {
 
-        assertEquals(28, Euler12.getFirstTriangleNumWithDividers(5, true));
+        assertEquals(new BigInteger("28"), Euler12.getTriangleNumber(5, true));
     }
 
-    @Test
-    public void SmallValueDivisorsTest()    {
-
-        assertThat(Euler12.getDivisors(28), CoreMatchers.hasItems(1,2,4,7,14,28));
-
-    }
-
-
-    @Test
-    public void SmallValueDivisorsUpgradedTest()    {
-
-        assertThat(Euler12.getDivisorsUpgraded(28), CoreMatchers.hasItems(1,2,4,7,14,28));
-    }
-
-    @Test
-    public void BenchmarkGetDivisorsTest() {
-
-        Long runtime, runtimeUpgraded;
-        Long maxCount = 100L;
-        int testNum = 10000001;
-
-        //TODO: find out how to work with Java 8-9-10 Date API
-        Long start = System.currentTimeMillis();
-
-        for (int i=0; i<maxCount; i++)  {
-            Euler12.getDivisors(testNum);
-        }
-
-        Long stop = System.currentTimeMillis();
-        runtime = getTotalRuntime(maxCount, start, stop);
-
-        start = System.currentTimeMillis();
-        for (int i=0; i<maxCount; i++)  {
-            Euler12.getDivisorsUpgraded(testNum);
-        }
-
-        stop = System.currentTimeMillis();
-
-        runtimeUpgraded = getTotalRuntime(maxCount, start, stop);
-
-        System.out.println(testName.getMethodName()+": runtime: "+runtime+", runtime upgraded: "+runtimeUpgraded);
-
-        assertTrue (runtimeUpgraded < runtime);
-
-    }
 
     @Test
     public void BenchmarkGetFirstTriangleNumWithDividersTest() {
 
         Long runtime, meanRuntimeUpgraded;
         Long maxCount = 1000L;
-        int maxDivisorsCount = 10;
+        int maxDivisorsCount = 30;
 
         //TODO: find out how to work with Java 8-9-10 Date API
         Long start = System.currentTimeMillis();
 
         for (int i=0; i<maxCount; i++)  {
-            Euler12.getFirstTriangleNumWithDividers(maxDivisorsCount, false);
+            Euler12.getTriangleNumber(maxDivisorsCount, false);
         }
 
         Long stop = System.currentTimeMillis();
@@ -108,7 +68,7 @@ public class Euler12Test {
 
         start = System.currentTimeMillis();
         for (int i=0; i<maxCount; i++)  {
-            Euler12.getFirstTriangleNumWithDividers(maxDivisorsCount, true);
+            Euler12.getTriangleNumber(maxDivisorsCount, true);
         }
 
         stop = System.currentTimeMillis();
@@ -122,12 +82,17 @@ public class Euler12Test {
     }
 
 
-    //TODO: why I failed to calculate a mean runtime? How the cast for (stop-start)/maxCount works?
+    /**
+     * calculates a mean runtime
+     * @param maxCount
+     * @param start
+     * @param stop
+     * @return
+     */
     private Long getTotalRuntime(Long maxCount, Long start, Long stop) {
+        //TODO: why I failed to calculate a mean runtime? How the cast for (stop-start)/maxCount works?
         return (stop-start);
     }
 
-
-    //TODO: create test checking int overflow
 
 }
