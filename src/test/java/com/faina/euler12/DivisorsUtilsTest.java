@@ -1,4 +1,6 @@
-import com.faina.test.utils.DivisorUtils;
+package com.faina.euler12;
+
+import com.faina.euler12.utils.DivisorUtils;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 

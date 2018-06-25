@@ -1,4 +1,5 @@
-import com.faina.test.euler12.Euler12;
+package com.faina.euler12;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -35,7 +36,7 @@ public class Euler12Test {
     @Test
     public void SmallValueTest()    {
 
-        assertEquals(new BigInteger("28"), Euler12.getTriangleNumber(5, false));
+        assertEquals(new BigInteger("28"), Main.getTriangleNumber(5, false));
     }
 
     /**
@@ -45,7 +46,7 @@ public class Euler12Test {
     @Test
     public void SmallValueUpgradedTest()    {
 
-        assertEquals(new BigInteger("28"), Euler12.getTriangleNumber(5, true));
+        assertEquals(new BigInteger("28"), Main.getTriangleNumber(5, true));
     }
 
 
@@ -60,7 +61,7 @@ public class Euler12Test {
         Long start = System.currentTimeMillis();
 
         for (int i=0; i<maxCount; i++)  {
-            Euler12.getTriangleNumber(maxDivisorsCount, false);
+            Main.getTriangleNumber(maxDivisorsCount, false);
         }
 
         Long stop = System.currentTimeMillis();
@@ -68,7 +69,7 @@ public class Euler12Test {
 
         start = System.currentTimeMillis();
         for (int i=0; i<maxCount; i++)  {
-            Euler12.getTriangleNumber(maxDivisorsCount, true);
+            Main.getTriangleNumber(maxDivisorsCount, true);
         }
 
         stop = System.currentTimeMillis();
