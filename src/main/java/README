@@ -1,3 +1,8 @@
+ACTION ITEMS
+
+1. Make Euler12 work
+
+
 ACTION ITEMS FOR JAVA 8-9-10
 
 1. Implementation of ArrayList
@@ -7,6 +12,7 @@ ACTION ITEMS FOR JAVA 8-9-10
 5. when we should use Lambda (and when we shouldn't)
 6. Cast and cast issues
 7. Immutability, immutability issues
+8. String implementation
 
 
 ACTION ITEMS FOR 3RD PARTY LIBS
