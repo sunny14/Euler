@@ -30,13 +30,14 @@ public class Main {
                             sum = sum.add(num);
                      }
 
+                     //print first 10 digits of the sum
                      System.out.println(sum.toString().substring(0, 10));
 
               } catch (IOException e) {
                      e.printStackTrace();
               }
 
-              //get first 10 digits pf the sum
+
 
        }
 
