@@ -19,7 +19,7 @@ public class Main {
               File file = new File(classLoader.getResource("euler13").getFile());
 
 
-              //TODO: try-with-resources
+              //try-with-resources
               try (Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()))) {
 
                      BigInteger [] bigIntArray = Arrays.stream(stream.toArray(String[]::new))
