@@ -23,7 +23,7 @@ public class BritishNumbersParser {
 
         boolean resThousands = constructThousands(number, sb);
         boolean resHundreds = constructHundreds(number, sb);
-        if ( resThousands || resHundreds )  {
+        if ( (resThousands || resHundreds) && (getTens(number) > 0 || getNums(number) > 0 ) )  {
             sb.append("and");
         }
         constructTens(number, sb);
@@ -40,14 +40,8 @@ public class BritishNumbersParser {
         int thousands = number/1000;
         if (thousands > 0)  {
 
-            if (thousands == 1) {
-                sb.append("a");
-            }
-            else {
-                sb.append(NUMBERS.fromInt(thousands));
-            }
-
-            sb.append(THOUSAND_POSTFIX);
+            sb.append(NUMBERS.fromInt(thousands))
+                    .append(THOUSAND_POSTFIX);
             isThousands = true;
         }
 
@@ -62,14 +56,8 @@ public class BritishNumbersParser {
         int hundreds = (number % 1000)/100;
         if (hundreds > 0)  {
 
-//            if (hundreds == 1)  {
-//                sb.append("a");
-//            }
-//            else {
-                sb.append(NUMBERS.fromInt(hundreds));
-          //  }
-
-            sb.append(HUNDRED_POSTFIX);
+            sb.append(NUMBERS.fromInt(hundreds))
+                    .append(HUNDRED_POSTFIX);
             isHundreds = true;
         }
 
@@ -79,7 +67,7 @@ public class BritishNumbersParser {
 
     private void constructTens(int number, StringBuilder sb)    {
 
-        int tens = (number % 100)/10;
+        int tens = getTens(number);
         if (tens == 1)  {
             //search by 2 last symbols
             sb.append(NUMBERS.fromInt(number % 100));
@@ -89,13 +77,20 @@ public class BritishNumbersParser {
                 sb.append(NUMBERS.fromInt(tens*10));
             }
 
-            int nums = number % 10;
+            int nums = getNums(number);
             if (nums > 0) {
                 sb.append(NUMBERS.fromInt(nums));
             }
         }
     }
 
+    private int getNums(int number) {
+        return number % 10;
+    }
+
+    private int getTens(int number) {
+        return (number % 100) / 10;
+    }
 
 
     //TODO: understand this: The static methods valueOf() and values() are created at compile time and do not appear in source code.

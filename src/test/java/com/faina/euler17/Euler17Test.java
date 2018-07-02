@@ -37,7 +37,7 @@ public class Euler17Test {
     @Test
     public void ATest()  {
         int testInt = 1113;
-        String expected = "athousandonehundredANDTHIRTEEN";
+        String expected = "onethousandonehundredANDTHIRTEEN";
         String res = new BritishNumbersParser(testInt).getStringValue();
 
         logger.error(res+" - "+expected);
