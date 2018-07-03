@@ -18,7 +18,7 @@ public class Euler17Test {
         String expected = "FOURthousandTWOhundredANDfiftySIX";
         String res = new BritishNumbersParser(testInt).getStringValue();
 
-        logger.error(res+" - "+expected);
+        logger.info(res+" - "+expected);
 
         assertTrue(res.equalsIgnoreCase(expected));
     }
@@ -29,7 +29,7 @@ public class Euler17Test {
         String expected = "FOURthousandTWOhundredANDTHIRTEEN";
         String res = new BritishNumbersParser(testInt).getStringValue();
 
-        logger.error(res+" - "+expected);
+        logger.info(res+" - "+expected);
 
         assertTrue(res.equalsIgnoreCase(expected));
     }
@@ -40,7 +40,7 @@ public class Euler17Test {
         String expected = "onethousandonehundredANDTHIRTEEN";
         String res = new BritishNumbersParser(testInt).getStringValue();
 
-        logger.error(res+" - "+expected);
+        logger.info(res+" - "+expected);
 
         assertTrue(res.equalsIgnoreCase(expected));
     }
@@ -51,7 +51,7 @@ public class Euler17Test {
 
         for (int i=1; i <= 5; i++) {
             String numberStr = new BritishNumbersParser(i).getStringValue();
-            logger.error(numberStr);
+            logger.info(numberStr);
             sumOfLetters += com.faina.euler17.Main.getNumberOfLetters(numberStr);
         }
 

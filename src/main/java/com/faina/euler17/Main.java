@@ -14,11 +14,11 @@ public class Main {
 
         for (int i=1; i <= 1000; i++) {
             String numberStr = new BritishNumbersParser(i).getStringValue();
-            logger.error(numberStr);
+            logger.debug(numberStr);
             sumOfLetters += getNumberOfLetters(numberStr);
         }
 
-        logger.error("RESULT: "+sumOfLetters);
+        logger.debug("RESULT: "+sumOfLetters);
 
 
     }
