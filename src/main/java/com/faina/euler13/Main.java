@@ -1,5 +1,7 @@
 package com.faina.euler13;
 
+import com.faina.utils.MyIOUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -15,8 +17,7 @@ public class Main {
        public static void main( String [] args )   {
 
               //Get file from resources folder
-              ClassLoader classLoader = new Main().getClass().getClassLoader();
-              File file = new File(classLoader.getResource("euler13").getFile());
+              File file = MyIOUtils.getFileFromResources("euler13");
 
 
               //try-with-resources

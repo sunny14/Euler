@@ -1,0 +1,7 @@
+1. Given a csv file, sort it by its key field EFFICIENTLY.
+The program should never have more than X number of records in memory.
+The key index and the max number of records are read as input arguments.
+
+2. Design a performance improvement using parallel processing.
+
+3. Add JDBC code which inserts the sorted file into database. Assume all fields are strings.

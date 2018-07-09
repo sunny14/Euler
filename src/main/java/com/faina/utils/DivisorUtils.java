@@ -1,5 +1,8 @@
 package com.faina.euler12.utils;
 
+import com.faina.euler13.Main;
+
+import java.io.File;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,4 +58,5 @@ public class DivisorUtils {
         return divisorsList;
 
     }
+
 }
