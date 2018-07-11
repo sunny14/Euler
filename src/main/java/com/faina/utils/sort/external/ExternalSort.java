@@ -52,34 +52,7 @@ public class ExternalSort {
             System.exit(0);
         }
 
-        //merge heaps into ordered heaps A1,A2, A3... until there are no two heaps A1, A2 where max(A1) > min (A2)
-        int filesNum = dir.list().length;
-        for (int i=1; i <= filesNum; i++) {
-
-
-
-            //merge all files j > i with i, one by one
-            for (int j=i+1; j<=filesNum; j++)   {
-
-                MinMaxPriorityQueue<MyRecord> records = getRecordsFromFile(key, maxHeapSize, String.valueOf(i));
-                MinMaxPriorityQueue<MyRecord> records2 = getRecordsFromFile(key, maxHeapSize, String.valueOf(j));
-
-                Comparator comparator = records.comparator();
-                while (comparator.compare(records.peekLast(), records2.peekFirst()) > 0 )   {
-                    MyRecord smallerRecord = records2.pollFirst();
-                    MyRecord biggerRecord = records.pollLast();
-
-                    records.add(smallerRecord);
-                    records2.add(biggerRecord);
-                }
-
-                writeToFile(i, records);
-                writeToFile(j, records2);
-            }
-
-
-
-        }
+        mergeSortedFiles(key, maxHeapSize, dir);
 
 
         //write ordered sorted heaps to file
@@ -88,6 +61,36 @@ public class ExternalSort {
         //write ordered sorted heaps into database
 
 
+    }
+
+    private static void mergeSortedFiles(String key, int maxHeapSize, File dir) throws IOException {
+
+        int filesNum = dir.list().length;
+        for (Integer i=1; i <= filesNum; i++) {
+
+            //merge all files j > i with i, one by one
+            for (Integer j=i+1; j<=filesNum; j++)   {
+
+                MinMaxPriorityQueue<MyRecord> records = getRecordsFromFile(key, maxHeapSize, String.valueOf(i));
+                MinMaxPriorityQueue<MyRecord> records2 = getRecordsFromFile(key, maxHeapSize, String.valueOf(j));
+
+                Comparator comparator = records.comparator();
+                //merge heaps into ordered heaps A1,A2, A3... until there are no two heaps A1, A2 where max(A1) > min (A2)
+                while (comparator.compare(records.peekLast(), records2.peekFirst()) > 0 )   {
+                    MyRecord smallerRecord = records2.pollFirst();
+                    MyRecord biggerRecord = records.pollLast();
+
+                    records.add(smallerRecord);
+                    records2.add(biggerRecord);
+                }
+
+                writeToFile(i.toString(), records);
+                writeToFile(j.toString(), records2);
+            }
+
+
+
+        }
     }
 
     private static MinMaxPriorityQueue<MyRecord> getRecordsFromFile(String key, int maxHeapSize, String filename ) throws FileNotFoundException {
@@ -116,7 +119,7 @@ public class ExternalSort {
 
             //TODO: keep map of min/max values
 
-            writeToFile(heapcount, records);
+            writeToFile(heapcount.toString(), records);
         }
 
         scanner.close();
@@ -138,12 +141,14 @@ public class ExternalSort {
         return records;
     }
 
-    private static void writeToFile(Integer heapcount, MinMaxPriorityQueue<MyRecord> records) throws IOException {
-        File outputFile = new File(DIR+File.separator+ heapcount.toString());
-        boolean res = outputFile.getParentFile().delete();
-        res = outputFile.getParentFile().mkdirs();
+    private static void writeToFile(String filename, MinMaxPriorityQueue<MyRecord> records) throws IOException {
+
+        File outputFile = new File(DIR+File.separator+ filename);
+        boolean res = outputFile.getParentFile().mkdirs();
+        //TODO: try with resources
         FileWriter fw = new FileWriter(outputFile);
         SimpleCSVparser.writeAll(records, fw);
         fw.close();
+
     }
 }
