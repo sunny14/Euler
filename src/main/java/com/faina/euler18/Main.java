@@ -4,9 +4,8 @@ public class Main {
 
     public static void main( String [] args )   {
 
-        //read the input file
-
-        //build the input tree keeping the original nodes order
+        //build the input tree
+        Tree tree = new Tree("euler18");
 
         //trace the tree with BFS and find the max node value
 
@@ -26,4 +25,5 @@ public class Main {
         //
 
     }
+
 }
