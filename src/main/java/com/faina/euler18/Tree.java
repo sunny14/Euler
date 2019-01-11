@@ -21,6 +21,8 @@ public class Tree {
 
         try (Stream<String> stream = Files.lines(Paths.get(inputFile.getAbsolutePath()))) {
 
+
+            //TODO: turn the code into testable
             Integer [][] array = Arrays.stream(stream.toArray(String[]::new))
                     .map(Tree::convertFromLineToNumbers)
                     .toArray(Integer[][]::new);
@@ -28,7 +30,7 @@ public class Tree {
 
 
 
-            this.adjacencyList = createAjacencyList(getOneArray(array));
+            this.adjacencyList = createAjacencyList(getArrayOfNodes(array));
 
         } catch (Throwable e) {
             //TODO: logger
@@ -37,15 +39,22 @@ public class Tree {
 
     }
 
-    private Integer[] getOneArray(Integer[][] array) {
+    private Node[] getArrayOfNodes(Integer[][] array) {
 
-        int lastLineLength = array[array.length-1].length;
-        Integer [] result = new Integer[array.length*lastLineLength];
-        int resultArrayCounter = 0;
-
+        int resultArraySize = 0;
         for (int i=0; i<array.length; i++)  {
             for (int j=0; j<array[i].length;  j++)   {
-                result[resultArrayCounter] = array[i][j];
+                resultArraySize++;
+            }
+        }
+
+
+        Node [] result = new Node[resultArraySize];
+        int resultArrayCounter = 0;
+
+        for (Integer i=0; i<array.length; i++)  {
+            for (Integer j=0; j<array[i].length;  j++)   {
+                result[resultArrayCounter] = new Node(i.toString()+"."+j, array[i][j]);
                 resultArrayCounter++;
             }
         }
@@ -53,7 +62,7 @@ public class Tree {
         return result;
     }
 
-    private List<Integer> [] createAjacencyList( Integer [] array) {
+    private List<Integer> [] createAjacencyList( Node [] array) {
 
         List [] result = new ArrayList[array.length];
 
@@ -74,8 +83,8 @@ public class Tree {
         return result;
     }
 
-    private List <Integer> getRecord(Integer[] array, int i, int increment) {
-        List <Integer> record = new ArrayList<>();
+    private List <Node> getRecord(Node[] array, int i, int increment) {
+        List <Node> record = new ArrayList<>();
         //add father node
         record.add(array[i]);
 
@@ -104,6 +113,16 @@ public class Tree {
         }
 
         return result;
+    }
+
+    private class Node  {
+        String key;
+        Integer value;
+
+        public Node(String key, Integer value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 }
 
