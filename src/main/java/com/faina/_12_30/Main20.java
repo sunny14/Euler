@@ -1,4 +1,4 @@
-package com.faina.euler20;
+package com.faina._12_30;
 
 import com.google.common.math.BigIntegerMath;
 
@@ -16,7 +16,7 @@ import java.math.BigInteger;
 
  */
 
-public class Main {
+public class Main20 {
 
     public static BigInteger factorialUsingGuava(int n) {
         return BigIntegerMath.factorial(n);

@@ -1,9 +1,9 @@
-package com.faina.euler15;
+package com.faina._12_30;
 
 import java.math.BigInteger;
 //TODO: use logging framework
 //TODO: write dynamic programming solution + increase heap; the answer should be 137846528820
-public class Main {
+public class Main15 {
 
 
     private static final int SIZE = 20;

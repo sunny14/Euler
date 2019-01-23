@@ -1,9 +1,8 @@
-package com.faina.euler22;
+package com.faina._12_30;
 
 
 import com.opencsv.CSVReader;
 
-import javax.swing.text.html.HTMLDocument;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -23,13 +22,13 @@ import java.util.TreeSet;
 
  */
 
-public class Main {
+public class Main22 {
 
     public static void main( String [] args ) throws IOException {
 
 
         //input names from file
-        InputStream is = com.faina.euler22.Main.class.getClassLoader().getResourceAsStream("p022_names.txt");
+        InputStream is = Main22.class.getClassLoader().getResourceAsStream("p022_names.txt");
         CSVReader reader = new CSVReader(new InputStreamReader(is));
         List<String[]> names = reader.readAll();
 

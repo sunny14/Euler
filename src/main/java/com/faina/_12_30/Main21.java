@@ -1,4 +1,4 @@
-package com.faina.euler21;
+package com.faina._12_30;
 
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.Set;
  Evaluate the sum of all the amicable numbers under 10000.
 
  */
-public class Main {
+public class Main21 {
 
     public static void main( String [] args )   {
 

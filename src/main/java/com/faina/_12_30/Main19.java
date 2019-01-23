@@ -1,4 +1,4 @@
-package com.faina.euler19;
+package com.faina._12_30;
 
 
 import java.time.DayOfWeek;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Main19 {
 
     public static void main( String [] args )   {
 
