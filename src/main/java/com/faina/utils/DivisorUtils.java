@@ -59,4 +59,15 @@ public class DivisorUtils {
 
     }
 
+    public static List<Integer> getProperDivisors(Integer num)    {
+        List<Integer> divisors = new ArrayList<>();
+
+        for (int i=1; i<=(num+1)/2; i++) {
+            if (num % i == 0)   {
+                divisors.add(i);
+            }
+        }
+
+        return divisors;
+    }
 }

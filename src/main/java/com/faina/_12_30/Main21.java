@@ -1,10 +1,10 @@
 package com.faina._12_30;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import static com.faina.euler12.utils.DivisorUtils.getProperDivisors;
 
 /**
  *
@@ -38,17 +38,6 @@ public class Main21 {
 
     }
 
-    static List<Integer> getProperDivisors (Integer num)    {
-        List<Integer> divisors = new ArrayList<>();
-
-        for (int i=1; i<=(num+1)/2; i++) {
-            if (num % i == 0)   {
-                divisors.add(i);
-            }
-        }
-
-        return divisors;
-    }
 }
 
 
